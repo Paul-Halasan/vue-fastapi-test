@@ -234,7 +234,7 @@ import axios from "axios"
 import { NDataTable } from "naive-ui"
 
 // API base URL (palitan kung iba yung gamit mo)
-const API_BASE = "http://127.0.0.1:8000"
+const API_BASE = "https://virilocal-remunerably-cristine.ngrok-free.dev"
 
 const materials = ref([])
 const allMaterials = ref([]) // Store all materials for filtering
@@ -412,15 +412,15 @@ const editUnitPrice = computed(() => {
 })
 
 // Validation computed properties for edit
-const canSaveMaterial = computed(() => {
-  const hasName = editForm.value.material_name && editForm.value.material_name.trim() !== ''
-  const hasType = editForm.value.material_type && editForm.value.material_type.trim() !== ''
-  const hasUnit = editForm.value.material_unit && editForm.value.material_unit.trim() !== ''
-  const hasPrice = editForm.value.material_price && editForm.value.material_price > 0
-  const hasQuantity = editForm.value.material_quantity && editForm.value.material_quantity > 0
+// const canSaveMaterial = computed(() => {
+//   const hasName = editForm.value.material_name && editForm.value.material_name.trim() !== ''
+//   const hasType = editForm.value.material_type && editForm.value.material_type.trim() !== ''
+//   const hasUnit = editForm.value.material_unit && editForm.value.material_unit.trim() !== ''
+//   const hasPrice = editForm.value.material_price && editForm.value.material_price > 0
+//   const hasQuantity = editForm.value.material_quantity && editForm.value.material_quantity > 0
 
-  return hasName && hasType && hasUnit && hasPrice && hasQuantity
-})
+//   return hasName && hasType && hasUnit && hasPrice && hasQuantity
+// })
 
 // Edit functionality
 const openEditModal = (material) => {
@@ -471,7 +471,7 @@ const saveMaterialChanges = async () => {
 }
 
 const deleteMaterialFromModal = async () => {
-  const materialName = editingMaterial.value.material_name
+  // const materialName = editingMaterial.value.material_name
   const materialId = editingMaterial.value.material_id
 
   try {
