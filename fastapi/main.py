@@ -34,7 +34,10 @@ def get_db():
 app.add_middleware(
     CORSMiddleware,
     #allow_origins=["*"],
-    allow_origins=["http://localhost:5173"],  # Vite dev
+    allow_origins=[
+        "http://localhost:5173",  # Vite dev (local)
+        "https://vue-fastapi-test-9vy8tjz48-paul-halasans-projects.vercel.app"  # Vercel deployment
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
