@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // adjust baseURL kung may backend domain ka na
 const api = axios.create({
-  baseURL: 'https://virilocal-remunerably-cristine.ngrok-free.dev',
+  baseURL: 'https://nelson-dimensional-expectations-jvc.trycloudflare.com',
 })
 
 // Products
