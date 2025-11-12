@@ -1,10 +1,10 @@
 <template>
-  <div class="glassmorphism-container" style="margin: 5rem; padding: 1rem; border-radius: 15px;">
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+  <div class="glassmorphism-container" style="margin: 2rem 1rem; padding: 1rem; border-radius: 15px;">
+    <div class="header-section">
 
-      <h1 style="font-size: 1.5rem; font-weight: 600;">Materials</h1>
+      <h1 class="page-title">Materials</h1>
 
-      <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <div class="controls-section">
         <n-popover trigger="hover">
           <template #trigger>
             <n-button
@@ -13,6 +13,7 @@
               color="#f472b6"
               style="--n-color-hover: #f472b6; --n-color-pressed: #db2777"
               @click="showAddMaterialModal = true"
+              class="add-button"
             >
               Add Material
             </n-button>
@@ -26,7 +27,7 @@
           size="medium"
           placeholder="Search for material name..."
           round
-          style="width: 250px;"
+          class="search-input"
           @input="handleSearch"
         />
       </div>
@@ -36,7 +37,7 @@
     <!-- Modal for Add Material -->
     <!-- eslint-disable-next-line vue/no-v-model-argument -->
     <n-modal v-model:show="showAddMaterialModal">
-      <n-card style="width: 650px">
+      <n-card class="glassmorphism-modal modal-responsive">
         <template #header>Add New Material</template>
 
         <n-form>
@@ -185,7 +186,7 @@
     <!-- Delete Warning Modal -->
     <!-- eslint-disable-next-line vue/no-v-model-argument -->
     <n-modal v-model:show="showDeleteWarningModal">
-      <n-card class="glassmorphism-modal" style="width: 550px">
+      <n-card class="glassmorphism-modal modal-responsive-small">
         <template #header>⚠️ Cannot Delete Material</template>
 
         <div style="margin-bottom: 16px;">
@@ -792,5 +793,173 @@ watch(() => editForm.value, (newForm) => {
   border-color: #f5c6cb !important;
   color: #721c24 !important;
   opacity: 0.6;
+}
+
+/* 📱 MOBILE RESPONSIVE STYLES 📱 */
+
+/* Header Section */
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: #ff5eae;
+}
+
+.controls-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  width: 250px;
+  min-width: 200px;
+}
+
+.add-button {
+  white-space: nowrap;
+}
+
+/* Modal Responsive Sizes */
+.modal-responsive {
+  width: 650px;
+  max-width: 95vw;
+  margin: 10px;
+}
+
+.modal-responsive-small {
+  width: 550px;
+  max-width: 95vw;
+  margin: 10px;
+}
+
+/* Mobile First Approach */
+@media (max-width: 768px) {
+  .glassmorphism-container {
+    margin: 1rem 0.5rem !important;
+    padding: 0.75rem !important;
+  }
+
+  .header-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+
+  .controls-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .search-input {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .add-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Modal adjustments */
+  .modal-responsive,
+  .modal-responsive-small {
+    width: 100%;
+    max-width: calc(100vw - 20px);
+    margin: 10px;
+  }
+
+  /* Table becomes horizontally scrollable */
+  .pinkTable :deep(.n-data-table-wrapper) {
+    max-height: 400px;
+  }
+
+  /* Adjust form elements for mobile */
+  :deep(.n-form-item) {
+    margin-bottom: 12px;
+  }
+
+  /* Adjust button sizes */
+  :deep(.n-button) {
+    min-height: 44px; /* Touch-friendly size */
+  }
+
+  /* Real-time computations stack vertically */
+  :deep(.n-space.n-space--vertical) {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .glassmorphism-container {
+    margin: 0.5rem 0.25rem !important;
+    padding: 0.5rem !important;
+  }
+
+  .page-title {
+    font-size: 1.1rem;
+  }
+
+  /* Even smaller modal */
+  .modal-responsive,
+  .modal-responsive-small {
+    width: 100%;
+    max-width: calc(100vw - 10px);
+    margin: 5px;
+  }
+
+  /* Stack computation and buttons vertically */
+  :deep(.n-card__content > div:last-child) {
+    flex-direction: column !important;
+    gap: 15px !important;
+  }
+
+  /* Full-width action buttons */
+  :deep(.n-space) {
+    width: 100% !important;
+    justify-content: stretch !important;
+  }
+
+  :deep(.n-space .n-button) {
+    flex: 1 !important;
+  }
+
+  /* Table adjustments for very small screens */
+  .pinkTable :deep(.n-data-table-wrapper) {
+    max-height: 300px;
+    font-size: 12px;
+  }
+
+  .pinkTable :deep(.n-data-table-td),
+  .pinkTable :deep(.n-data-table-th) {
+    padding: 8px 6px !important;
+    font-size: 12px !important;
+  }
+
+  /* Warning modal specific adjustments */
+  :deep(.n-card__content p) {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  :deep(.n-card__content ul) {
+    font-size: 13px;
+  }
 }
 </style>
