@@ -528,6 +528,7 @@ const fetchProducts = async () => {
 const fetchMaterials = async () => {
   try {
     const res = await axios.get(`${API_BASE}/materials`)
+    console.log('Fetched materials from API:', res.data)
     materialOptions.value = res.data.map(mat => ({
       label: `[${mat.material_type}] ${mat.material_name}`,
       value: mat.material_id,
