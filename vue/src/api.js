@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // adjust baseURL kung may backend domain ka na
 const api = axios.create({
-  baseURL: 'https://nelson-dimensional-expectations-jvc.trycloudflare.com',
+  baseURL: 'https://consequences-andale-spent-realm.trycloudflare.com',
 })
 
 // Products
