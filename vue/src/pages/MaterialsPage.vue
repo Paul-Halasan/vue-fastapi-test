@@ -235,7 +235,7 @@ import axios from "axios"
 import { NDataTable } from "naive-ui"
 
 // API base URL (palitan kung iba yung gamit mo)
-const API_BASE = "https://adoption-applies-wanna-civil.trycloudflare.com"
+const API_BASE = "https://cow-prompt-stop-sapphire.trycloudflare.com"
 
 const materials = ref([])
 const allMaterials = ref([]) // Store all materials for filtering
