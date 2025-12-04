@@ -308,7 +308,7 @@ import { ref, onMounted, computed, watch, h, nextTick } from "vue"
 import axios from "axios"
 
 // API base URL (palitan kung iba yung gamit mo)
-const API_BASE = "https://fairy-voltage-determined-revenues.trycloudflare.com"
+const API_BASE = "https://isaac-fifth-cdt-sauce.trycloudflare.com"
 
 const products = ref([])
 const allProducts = ref([]) // Store all products for filtering

@@ -357,14 +357,10 @@ def delete_product_material(pm_id: int, db: Session = Depends(get_db)):
     return pm
 
 @app.post("/materials/import")
-def import_materials(file: UploadFile, db: Session = Depends(get_db)):
+def import_materials(data: list[dict], db: Session = Depends(get_db)):
     try:
-        # Read the Excel file into a DataFrame
-        contents = file.file.read()
-        df = pd.read_excel(contents)
-
-        # Iterate through the DataFrame and add materials to the database
-        for _, row in df.iterrows():
+        # Iterate through the JSON data and add materials to the database
+        for row in data:
             new_material = models.Material(
                 material_name=row['material_name'],
                 material_type=row['material_type'],
