@@ -30,6 +30,17 @@
           class="search-input"
           @input="handleSearch"
         />
+
+        <input
+          type="file"
+          id="import-excel"
+          accept=".xlsx, .xls"
+          style="display: none;"
+          @change="handleExcelUpload"
+        />
+        <button class="n-button n-button--primary-type" @click="triggerExcelUpload">
+          Import Excel
+        </button>
       </div>
 
     </div>
@@ -233,6 +244,7 @@
 import { ref, onMounted, computed, watch, h } from "vue"
 import axios from "axios"
 import { NDataTable } from "naive-ui"
+import * as XLSX from "xlsx"
 
 // API base URL (palitan kung iba yung gamit mo)
 const API_BASE = "https://cow-prompt-stop-sapphire.trycloudflare.com"
@@ -506,6 +518,35 @@ watch(() => editForm.value, (newForm) => {
 
   hasChanges.value = nameChanged || typeChanged || unitChanged || priceChanged || quantityChanged || supplierChanged
 }, { deep: true })
+
+const triggerExcelUpload = () => {
+  document.getElementById("import-excel").click();
+};
+
+const handleExcelUpload = async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const data = new Uint8Array(e.target.result);
+    const workbook = XLSX.read(data, { type: "array" });
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    const jsonData = XLSX.utils.sheet_to_json(sheet);
+
+    try {
+      await axios.post(`${API_BASE}/materials/import`, jsonData);
+      await fetchMaterials(); // Refresh materials list
+      alert("Materials imported successfully!");
+    } catch (error) {
+      console.error("Failed to import materials:", error);
+      alert("Failed to import materials. Please check the file format.");
+    }
+  };
+
+  reader.readAsArrayBuffer(file);
+};
 </script>
 
 <style scoped>

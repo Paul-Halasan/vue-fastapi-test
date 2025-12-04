@@ -1,9 +1,10 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import models, schemas
 from database import engine
 from sqlalchemy.orm import Session
 from database import SessionLocal
+import pandas as pd
 
 # Helper function to cap profit margin within database limits
 def cap_profit_margin(margin_value):
@@ -354,3 +355,29 @@ def delete_product_material(pm_id: int, db: Session = Depends(get_db)):
     db.delete(pm)
     db.commit()
     return pm
+
+@app.post("/materials/import")
+def import_materials(file: UploadFile, db: Session = Depends(get_db)):
+    try:
+        # Read the Excel file into a DataFrame
+        contents = file.file.read()
+        df = pd.read_excel(contents)
+
+        # Iterate through the DataFrame and add materials to the database
+        for _, row in df.iterrows():
+            new_material = models.Material(
+                material_name=row['material_name'],
+                material_type=row['material_type'],
+                material_unit=row['material_unit'],
+                material_price=row['material_price'],
+                material_quantity=row['material_quantity'],
+                material_supplier=row['material_supplier'],
+                material_unit_price=row['material_price'] / row['material_quantity']
+            )
+            db.add(new_material)
+
+        db.commit()
+        return {"message": "Materials imported successfully!"}
+
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to import materials: {str(e)}")
