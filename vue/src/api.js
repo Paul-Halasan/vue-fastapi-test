@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // adjust baseURL kung may backend domain ka na
 const api = axios.create({
-  baseURL: 'https://cow-prompt-stop-sapphire.trycloudflare.com',
+  baseURL: 'https://fairy-voltage-determined-revenues.trycloudflare.com',
 })
 
 // Products
