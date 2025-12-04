@@ -38,9 +38,16 @@
           style="display: none;"
           @change="handleExcelUpload"
         />
-        <button class="n-button n-button--primary-type" @click="triggerExcelUpload">
+        <n-button
+          strong
+          round
+          color="#f472b6"
+          style="--n-color-hover: #f472b6; --n-color-pressed: #db2777"
+          @click="triggerExcelUpload"
+          class="add-button"
+        >
           Import Excel
-        </button>
+        </n-button>
       </div>
 
     </div>

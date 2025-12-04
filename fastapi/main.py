@@ -360,6 +360,9 @@ def delete_product_material(pm_id: int, db: Session = Depends(get_db)):
 def import_materials(data: list[dict], db: Session = Depends(get_db)):
     try:
         # Iterate through the JSON data and add materials to the database
+
+        print('Importing materials data:', data)
+
         for row in data:
             new_material = models.Material(
                 material_name=row['material_name'],
