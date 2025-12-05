@@ -370,7 +370,7 @@ def import_materials(data: list[dict], db: Session = Depends(get_db)):
                 material_unit=row['material_unit'],
                 material_price=row['material_price'],
                 material_quantity=row['material_quantity'],
-                material_supplier=row['material_supplier'],
+                material_supplier=row['material_supplier'] if row['material_supplier'] else "n/a",
                 material_unit_price=row['material_price'] / row['material_quantity']
             )
             db.add(new_material)
