@@ -136,7 +136,7 @@
               <div><b>Profit Margin:</b> {{ profitMargin.toFixed(2) }}%</div>
               <div><b>Suggested Price + Shopee Tax:</b> ₱{{ (suggestedPrice + shopeeTax).toFixed(2) }}</div>
               <div><b>Shopee Profit:</b> ₱{{ shopeeProfit }}</div>
-              <div><b>Shopee Profit Margin</b> ₱{{ shopeeProfitMargin }}</div>
+              <div><b>Shopee Profit Margin</b> {{ shopeeProfitMargin }}%</div>
             </n-space>
 
             <!-- Right: Action Buttons -->
