@@ -132,9 +132,11 @@
               <div><b>Total Cost (Cost of Goods):</b> ₱{{ totalCost.toFixed(2) }}</div>
               <div><b>Shopee Tax (17.84%):</b> ₱{{ shopeeTax.toFixed(2) }}</div>
               <div><b>Suggested Price (×3.3):</b> ₱{{ suggestedPrice.toFixed(2) }}</div>
-              <div><b>Suggested Price + Shopee Tax:</b> ₱{{ (suggestedPrice + shopeeTax).toFixed(2) }}</div>
               <div><b>Profit:</b> ₱{{ profit.toFixed(2) }}</div>
               <div><b>Profit Margin:</b> {{ profitMargin.toFixed(2) }}%</div>
+              <div><b>Suggested Price + Shopee Tax:</b> ₱{{ (suggestedPrice + shopeeTax).toFixed(2) }}</div>
+              <div><b>Shopee Profit:</b> ₱{{ (selling_price - (totalCost + shopeeTax)).toFixed(2) }}</div>
+              <div><b>Shopee Profit Margin</b> ₱{{ ((selling_price - (totalCost + shopeeTax) / totalCost) * 100).toFixed(2) }}</div>
             </n-space>
 
             <!-- Right: Action Buttons -->
