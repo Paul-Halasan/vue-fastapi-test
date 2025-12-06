@@ -135,8 +135,8 @@
               <div><b>Profit:</b> ₱{{ profit.toFixed(2) }}</div>
               <div><b>Profit Margin:</b> {{ profitMargin.toFixed(2) }}%</div>
               <div><b>Suggested Price + Shopee Tax:</b> ₱{{ (suggestedPrice + shopeeTax).toFixed(2) }}</div>
-              <div><b>Shopee Profit:</b> ₱{{ (selling_price - (totalCost + shopeeTax)).toFixed(2) }}</div>
-              <div><b>Shopee Profit Margin</b> ₱{{ ((selling_price - (totalCost + shopeeTax) / totalCost) * 100).toFixed(2) }}</div>
+              <div><b>Shopee Profit:</b> ₱{{ shopeeProfit }}</div>
+              <div><b>Shopee Profit Margin</b> ₱{{ shopeeProfitMargin }}</div>
             </n-space>
 
             <!-- Right: Action Buttons -->
@@ -384,6 +384,25 @@ const profitMargin = computed(() => {
   console.log('Profit margin updated:', cappedMargin)
   return cappedMargin
 })
+
+// Function to calculate Shopee Profit
+const calculateShopeeProfit = (sellingPrice, totalCost, shopeeTax) => {
+  return sellingPrice - (totalCost + shopeeTax);
+};
+
+// Function to calculate Shopee Profit Margin
+const calculateShopeeProfitMargin = (sellingPrice, totalCost, shopeeTax) => {
+  if (totalCost === 0) return 0;
+  return ((sellingPrice - (totalCost + shopeeTax)) / totalCost) * 100;
+};
+
+const shopeeProfit = computed(() => {
+  return calculateShopeeProfit(form.value.selling_price, totalCost.value, shopeeTax.value).toFixed(2);
+});
+
+const shopeeProfitMargin = computed(() => {
+  return calculateShopeeProfitMargin(form.value.selling_price, totalCost.value, shopeeTax.value).toFixed(2);
+});
 
 // Validation computed properties
 const canAddMaterial = computed(() => {
