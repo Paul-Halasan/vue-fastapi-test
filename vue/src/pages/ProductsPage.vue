@@ -129,8 +129,10 @@
           <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
             <!-- Left: Real-time Computations -->
             <n-space vertical style="flex: 1;">
-              <div><b>Total Cost:</b> ₱{{ totalCost.toFixed(2) }}</div>
+              <div><b>Total Cost (Cost of Goods):</b> ₱{{ totalCost.toFixed(2) }}</div>
+              <div><b>Shopee Tax (17.84%):</b> ₱{{ shopeeTax.toFixed(2) }}</div>
               <div><b>Suggested Price (×3.3):</b> ₱{{ suggestedPrice.toFixed(2) }}</div>
+              <div><b>Suggested Price + Shopee Tax:</b> ₱{{ (suggestedPrice + shopeeTax).toFixed(2) }}</div>
               <div><b>Profit:</b> ₱{{ profit.toFixed(2) }}</div>
               <div><b>Profit Margin:</b> {{ profitMargin.toFixed(2) }}%</div>
             </n-space>
@@ -354,6 +356,10 @@ const totalCost = computed(() => {
   console.log('Total cost updated:', cost)
   return cost
 })
+
+const shopeeTax = computed(() => {
+  return totalCost.value * 0.1784;
+});
 
 const suggestedPrice = computed(() => {
   const suggested = totalCost.value * 3.3
