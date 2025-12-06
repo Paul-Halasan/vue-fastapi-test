@@ -60,6 +60,7 @@
                     v-model="material.material_id"
                     :options="materialOptions"
                     placeholder="Select material..."
+                    filterable
                     style="width: 350px;"
                     @update:value="updateMaterialPrice(index, $event)"
                   />
