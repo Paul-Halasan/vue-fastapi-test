@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // adjust baseURL kung may backend domain ka na
 const api = axios.create({
-  baseURL: 'https://isaac-fifth-cdt-sauce.trycloudflare.com',
+  baseURL: 'https://pacific-cream-october-senior.trycloudflare.com',
 })
 
 // Products

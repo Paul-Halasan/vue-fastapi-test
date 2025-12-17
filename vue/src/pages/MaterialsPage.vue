@@ -254,7 +254,7 @@ import { NDataTable } from "naive-ui"
 import * as XLSX from "xlsx"
 
 // API base URL (palitan kung iba yung gamit mo)
-const API_BASE = "https://isaac-fifth-cdt-sauce.trycloudflare.com"
+const API_BASE = "https://pacific-cream-october-senior.trycloudflare.com"
 
 const materials = ref([])
 const allMaterials = ref([]) // Store all materials for filtering
